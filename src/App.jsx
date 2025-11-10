@@ -12,10 +12,10 @@ import './App.css';
 function App() {
   return (
     <ThemeProvider>
-      <div className="min-h-screen">
+      <div className="min-h-screen overflow-x-hidden w-full">
         <TechBackground />
         <Header />
-        <main>
+        <main className="overflow-x-hidden">
           <Hero />
           <About />
           <Skills />
