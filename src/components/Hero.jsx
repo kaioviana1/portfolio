@@ -69,7 +69,7 @@ const Hero = () => {
               <FaLinkedin size={24} />
             </a>
             <a
-              href="mailto:kaio@example.com"
+              href="mailto:kaiovianalol45@gmail.com"
               className="p-3 bg-gray-200 dark:bg-gray-800 rounded-full hover:bg-primary hover:text-white transition-all duration-300 hover:scale-110"
               aria-label="Email"
             >

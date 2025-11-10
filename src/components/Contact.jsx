@@ -50,14 +50,14 @@ const Contact = () => {
     {
       icon: <FaEnvelope className="text-2xl" />,
       title: 'Email',
-      value: 'kaio.viana@example.com',
-      link: 'mailto:kaio.viana@example.com',
+      value: 'kaiovianalol45@gmail.com',
+      link: 'mailto:kaiovianalol45@gmail.com',
     },
     {
       icon: <FaPhone className="text-2xl" />,
       title: 'Telefone',
-      value: '+55 (11) 99999-9999',
-      link: 'tel:+5511999999999',
+      value: '(13) 98154-3600',
+      link: 'tel:+5513981543600',
     },
     {
       icon: <FaMapMarkerAlt className="text-2xl" />,
@@ -83,7 +83,7 @@ const Contact = () => {
     {
       icon: <FaEnvelope size={24} />,
       name: 'Email',
-      link: 'mailto:kaio.viana@example.com',
+      link: 'mailto:kaiovianalol45@gmail.com',
       color: 'hover:text-red-600',
     },
   ];
