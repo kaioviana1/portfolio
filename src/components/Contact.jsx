@@ -29,10 +29,10 @@ const Contact = () => {
     try {
       // Substitua com suas credenciais do EmailJS
       await emailjs.sendForm(
-        'YOUR_SERVICE_ID',      // Substitua pelo seu Service ID
-        'YOUR_TEMPLATE_ID',     // Substitua pelo seu Template ID
+        'service_ucb99hr',      // Substitua pelo seu Service ID
+        'template_9vmzlar',     // Substitua pelo seu Template ID
         formRef.current,
-        'YOUR_PUBLIC_KEY'       // Substitua pela sua Public Key
+        'acgZNIiOQC-xjJXhP'       // Substitua pela sua Public Key
       );
       
       setStatus('✅ Mensagem enviada com sucesso! Entrarei em contato em breve.');
