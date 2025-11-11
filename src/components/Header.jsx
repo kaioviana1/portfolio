@@ -1,11 +1,13 @@
 import { useState, useEffect } from 'react';
 import { FaBars, FaTimes, FaSun, FaMoon } from 'react-icons/fa';
 import { useTheme } from '../contexts/ThemeContext';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
   const [scrolled, setScrolled] = useState(false);
   const { isDark, toggleTheme } = useTheme();
+  const { language, toggleLanguage, t } = useLanguage();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -16,11 +18,11 @@ const Header = () => {
   }, []);
 
   const navItems = [
-    { name: 'Início', href: '#home' },
-    { name: 'Sobre', href: '#about' },
-    { name: 'Habilidades', href: '#skills' },
-    { name: 'Projetos', href: '#projects' },
-    { name: 'Contato', href: '#contact' },
+    { name: t.nav.home, href: '#home' },
+    { name: t.nav.about, href: '#about' },
+    { name: t.nav.skills, href: '#skills' },
+    { name: t.nav.projects, href: '#projects' },
+    { name: t.nav.contact, href: '#contact' },
   ];
 
   const handleNavClick = (e, href) => {
@@ -65,6 +67,13 @@ const Header = () => {
               </a>
             ))}
             <button
+              onClick={toggleLanguage}
+              className="px-3 py-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors duration-300 font-semibold text-sm"
+              aria-label="Toggle language"
+            >
+              {language === 'pt' ? '🇺🇸 EN' : '🇧🇷 PT'}
+            </button>
+            <button
               onClick={toggleTheme}
               className="p-2 rounded-lg bg-gray-200 dark:bg-gray-800 hover:bg-gray-300 dark:hover:bg-gray-700 transition-colors duration-300"
               aria-label="Toggle theme"
@@ -75,6 +84,13 @@ const Header = () => {
 
           {/* Mobile Menu Button */}
           <div className="md:hidden flex items-center space-x-4">
+            <button
+              onClick={toggleLanguage}
+              className="px-2 py-1 rounded-lg bg-gray-200 dark:bg-gray-800 text-xs font-semibold"
+              aria-label="Toggle language"
+            >
+              {language === 'pt' ? 'EN' : 'PT'}
+            </button>
             <button
               onClick={toggleTheme}
               className="p-2 rounded-lg bg-gray-200 dark:bg-gray-800"

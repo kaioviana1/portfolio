@@ -1,4 +1,5 @@
 import { ThemeProvider } from './contexts/ThemeContext';
+import { LanguageProvider } from './contexts/LanguageContext';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
@@ -12,18 +13,20 @@ import './App.css';
 function App() {
   return (
     <ThemeProvider>
-      <div className="min-h-screen overflow-x-hidden w-full">
-        <TechBackground />
-        <Header />
-        <main className="overflow-x-hidden">
-          <Hero />
-          <About />
-          <Skills />
-          <Projects />
-          <Contact />
-        </main>
-        <Footer />
-      </div>
+      <LanguageProvider>
+        <div className="min-h-screen overflow-x-hidden w-full">
+          <TechBackground />
+          <Header />
+          <main className="overflow-x-hidden">
+            <Hero />
+            <About />
+            <Skills />
+            <Projects />
+            <Contact />
+          </main>
+          <Footer />
+        </div>
+      </LanguageProvider>
     </ThemeProvider>
   );
 }

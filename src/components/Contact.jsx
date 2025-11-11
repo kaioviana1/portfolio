@@ -1,8 +1,10 @@
 import { useState, useRef } from 'react';
 import { FaGithub, FaLinkedin, FaEnvelope, FaPhone, FaMapMarkerAlt } from 'react-icons/fa';
 import emailjs from '@emailjs/browser';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Contact = () => {
+  const { t } = useLanguage();
   const formRef = useRef();
   const [formData, setFormData] = useState({
     name: '',
@@ -24,22 +26,21 @@ const Contact = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsLoading(true);
-    setStatus('Enviando...');
+    setStatus(t.contact.form.sending);
 
     try {
-      // Substitua com suas credenciais do EmailJS
       await emailjs.sendForm(
-        'service_ucb99hr',      // Substitua pelo seu Service ID
-        'template_9vmzlar',     // Substitua pelo seu Template ID
+        'service_ucb99hr',
+        'template_9vmzlar',
         formRef.current,
-        'acgZNIiOQC-xjJXhP'       // Substitua pela sua Public Key
+        'acgZNIiOQC-xjJXhP'
       );
       
-      setStatus('✅ Mensagem enviada com sucesso! Entrarei em contato em breve.');
+      setStatus(t.contact.form.success);
       setFormData({ name: '', email: '', subject: '', message: '' });
     } catch (error) {
       console.error('Erro ao enviar email:', error);
-      setStatus('❌ Erro ao enviar mensagem. Tente novamente.');
+      setStatus(t.contact.form.error);
     } finally {
       setIsLoading(false);
       setTimeout(() => setStatus(''), 5000);
@@ -49,20 +50,20 @@ const Contact = () => {
   const contactInfo = [
     {
       icon: <FaEnvelope className="text-2xl" />,
-      title: 'Email',
+      title: t.contact.email,
       value: 'kaiovianalol45@gmail.com',
       link: 'mailto:kaiovianalol45@gmail.com',
     },
     {
       icon: <FaPhone className="text-2xl" />,
-      title: 'Telefone',
+      title: t.contact.phone,
       value: '(13) 98154-3600',
       link: 'tel:+5513981543600',
     },
     {
       icon: <FaMapMarkerAlt className="text-2xl" />,
-      title: 'Localização',
-      value: 'São Paulo, Brasil',
+      title: t.contact.location,
+      value: t.contact.locationValue,
       link: null,
     },
   ];
@@ -92,19 +93,19 @@ const Contact = () => {
     <section id="contact" className="py-20">
       <div className="section-container">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
-          Entre em <span className="gradient-text">Contato</span>
+          {t.contact.title} <span className="gradient-text">{t.contact.titleHighlight}</span>
         </h2>
         <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-12"></div>
 
         <p className="text-center text-gray-600 dark:text-gray-400 mb-16 max-w-2xl mx-auto">
-          Tem um projeto em mente? Vamos conversar e transformar suas ideias em realidade!
+          {t.contact.description}
         </p>
 
         <div className="grid md:grid-cols-2 gap-12">
           {/* Contact Info */}
           <div>
             <h3 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">
-              Informações de Contato
+              {t.contact.info}
             </h3>
 
             <div className="space-y-6 mb-8">
@@ -134,7 +135,7 @@ const Contact = () => {
 
             <div className="bg-gradient-to-br from-primary/10 to-secondary/10 p-6 rounded-xl">
               <h4 className="font-bold text-lg mb-4 text-gray-800 dark:text-white">
-                Redes Sociais
+                {t.contact.social}
               </h4>
               <div className="flex space-x-4">
                 {socialLinks.map((social, index) => (
@@ -156,7 +157,7 @@ const Contact = () => {
           {/* Contact Form */}
           <div>
             <h3 className="text-2xl font-bold mb-6 text-gray-800 dark:text-white">
-              Envie uma Mensagem
+              {t.contact.form.title}
             </h3>
 
             <form ref={formRef} onSubmit={handleSubmit} className="space-y-4">
@@ -165,7 +166,7 @@ const Contact = () => {
                   htmlFor="name"
                   className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300"
                 >
-                  Nome
+                  {t.contact.form.name}
                 </label>
                 <input
                   type="text"
@@ -175,7 +176,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                  placeholder="Seu nome"
+                  placeholder={t.contact.form.namePlaceholder}
                 />
               </div>
 
@@ -184,7 +185,7 @@ const Contact = () => {
                   htmlFor="email"
                   className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300"
                 >
-                  Email
+                  {t.contact.form.email}
                 </label>
                 <input
                   type="email"
@@ -194,7 +195,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                  placeholder="seu@email.com"
+                  placeholder={t.contact.form.emailPlaceholder}
                 />
               </div>
 
@@ -203,7 +204,7 @@ const Contact = () => {
                   htmlFor="subject"
                   className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300"
                 >
-                  Assunto
+                  {t.contact.form.subject}
                 </label>
                 <input
                   type="text"
@@ -213,7 +214,7 @@ const Contact = () => {
                   onChange={handleChange}
                   required
                   className="w-full px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
-                  placeholder="Assunto da mensagem"
+                  placeholder={t.contact.form.subjectPlaceholder}
                 />
               </div>
 
@@ -222,7 +223,7 @@ const Contact = () => {
                   htmlFor="message"
                   className="block text-sm font-semibold mb-2 text-gray-700 dark:text-gray-300"
                 >
-                  Mensagem
+                  {t.contact.form.message}
                 </label>
                 <textarea
                   id="message"
@@ -232,7 +233,7 @@ const Contact = () => {
                   required
                   rows="5"
                   className="w-full px-4 py-3 rounded-lg bg-gray-100 dark:bg-gray-800 border border-gray-300 dark:border-gray-700 focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all resize-none"
-                  placeholder="Sua mensagem..."
+                  placeholder={t.contact.form.messagePlaceholder}
                 ></textarea>
               </div>
 
@@ -241,7 +242,7 @@ const Contact = () => {
                 disabled={isLoading}
                 className="w-full px-8 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-lg font-semibold hover:shadow-lg hover:scale-[1.02] transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed"
               >
-                {isLoading ? 'Enviando...' : 'Enviar Mensagem'}
+                {isLoading ? t.contact.form.sending : t.contact.form.send}
               </button>
 
               {status && (

@@ -8,8 +8,10 @@ import {
   SiSequelize,
 } from 'react-icons/si';
 import { MdSecurity } from 'react-icons/md';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Skills = () => {
+  const { t } = useLanguage();
   const skills = [
     {
       name: 'JavaScript',
@@ -73,12 +75,12 @@ const Skills = () => {
     <section id="skills" className="py-20">
       <div className="section-container">
         <h2 className="text-4xl md:text-5xl font-bold text-center mb-4">
-          Minhas <span className="gradient-text">Habilidades</span>
+          {t.skills.title} <span className="gradient-text">{t.skills.titleHighlight}</span>
         </h2>
         <div className="w-20 h-1 bg-gradient-to-r from-primary to-secondary mx-auto mb-12"></div>
 
         <p className="text-center text-gray-600 dark:text-gray-400 mb-16 max-w-2xl mx-auto">
-          Tecnologias e ferramentas que domino para criar aplicações modernas e escaláveis
+          {t.skills.description}
         </p>
 
         <div className="grid grid-cols-2 md:grid-cols-4 gap-6 md:gap-8">

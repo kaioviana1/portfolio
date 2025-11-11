@@ -1,7 +1,9 @@
 import { useState, useEffect } from 'react';
 import { FaGithub, FaLinkedin, FaEnvelope, FaArrowDown } from 'react-icons/fa';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Hero = () => {
+  const { t } = useLanguage();
   const [displayName, setDisplayName] = useState('');
   const fullName = 'Kaio Viana';
   const [isDeleting, setIsDeleting] = useState(false);
@@ -40,13 +42,13 @@ const Hero = () => {
       <div className="section-container text-center z-10">
         <div className="animate-fade-in">
           <h1 className="text-5xl md:text-7xl font-bold mb-6 animate-slide-up">
-            Olá, eu sou <span className="gradient-text">{displayName}<span className="animate-pulse">|</span></span>
+            {t.hero.greeting} <span className="gradient-text">{displayName}<span className="animate-pulse">|</span></span>
           </h1>
           <p className="text-xl md:text-2xl text-gray-600 dark:text-gray-400 mb-4 animate-slide-up delay-100">
-            Desenvolvedor Full Stack
+            {t.hero.role}
           </p>
           <p className="text-lg md:text-xl text-gray-500 dark:text-gray-500 mb-8 animate-slide-up delay-200">
-            25 anos | Transformando ideias em código
+            {t.hero.age}
           </p>
 
           <div className="flex justify-center space-x-6 mb-12 animate-slide-up delay-300">
@@ -82,13 +84,13 @@ const Hero = () => {
               href="#projects"
               className="px-8 py-3 bg-gradient-to-r from-primary to-secondary text-white rounded-full font-semibold hover:shadow-lg hover:scale-105 transition-all duration-300"
             >
-              Ver Projetos
+              {t.hero.viewProjects}
             </a>
             <a
               href="#contact"
               className="px-8 py-3 border-2 border-primary text-primary dark:text-primary rounded-full font-semibold hover:bg-primary hover:text-white transition-all duration-300"
             >
-              Contato
+              {t.hero.contact}
             </a>
           </div>
         </div>

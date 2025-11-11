@@ -1,14 +1,16 @@
 import { FaHeart } from 'react-icons/fa';
+import { useLanguage } from '../contexts/LanguageContext';
 
 const Footer = () => {
+  const { t } = useLanguage();
   const currentYear = new Date().getFullYear();
 
   const quickLinks = [
-    { name: 'Início', href: '#home' },
-    { name: 'Sobre', href: '#about' },
-    { name: 'Habilidades', href: '#skills' },
-    { name: 'Projetos', href: '#projects' },
-    { name: 'Contato', href: '#contact' },
+    { name: t.nav.home, href: '#home' },
+    { name: t.nav.about, href: '#about' },
+    { name: t.nav.skills, href: '#skills' },
+    { name: t.nav.projects, href: '#projects' },
+    { name: t.nav.contact, href: '#contact' },
   ];
 
   const handleNavClick = (e, href) => {
@@ -27,15 +29,14 @@ const Footer = () => {
           <div>
             <h3 className="text-xl font-bold mb-4 gradient-text">{'<KV />'}</h3>
             <p className="text-gray-600 dark:text-gray-400 text-sm">
-              Desenvolvedor Full Stack apaixonado por criar soluções digitais inovadoras e
-              eficientes. Transformando ideias em código.
+              {t.footer.description}
             </p>
           </div>
 
           {/* Quick Links */}
           <div>
             <h4 className="text-lg font-bold mb-4 text-gray-800 dark:text-white">
-              Links Rápidos
+              {t.footer.quickLinks}
             </h4>
             <ul className="space-y-2">
               {quickLinks.map((link, index) => (
@@ -55,7 +56,7 @@ const Footer = () => {
           {/* Contact Info */}
           <div>
             <h4 className="text-lg font-bold mb-4 text-gray-800 dark:text-white">
-              Contato
+              {t.footer.contactTitle}
             </h4>
             <ul className="space-y-2 text-sm text-gray-600 dark:text-gray-400">
               <li>
@@ -74,7 +75,7 @@ const Footer = () => {
                   (13) 98154-3600
                 </a>
               </li>
-              <li>São Paulo, Brasil</li>
+              <li>{t.contact.locationValue}</li>
             </ul>
           </div>
         </div>
@@ -83,11 +84,11 @@ const Footer = () => {
         <div className="pt-8 border-t border-gray-200 dark:border-gray-800">
           <div className="flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">
             <p className="text-sm text-gray-600 dark:text-gray-400 flex items-center">
-              © {currentYear} Kaio Viana. Feito com{' '}
-              <FaHeart className="text-red-500 mx-1" /> e React
+              © {currentYear} Kaio Viana. {t.footer.madeWith}{' '}
+              <FaHeart className="text-red-500 mx-1" /> {t.footer.and} React
             </p>
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              Todos os direitos reservados
+              {t.footer.rights}
             </p>
           </div>
         </div>
